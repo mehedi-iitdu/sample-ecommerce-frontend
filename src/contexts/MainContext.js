@@ -30,6 +30,10 @@ const MainContextProvider = ({ children }) => {
                         ]
                     }
                 }
+            case 'REMOVE_FROM_CART':
+                return {
+                    ...state, cartProducts: state.cartProducts.filter((item) => item.productID !== action.payload.id)
+                }
             default:
                 break;
         }
