@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { MainContext } from '../contexts/MainContext';
 
 export default function Product({ product }) {
 
-    const { cartProducts, setCartProducts}  = useContext(MainContext);
+    const { myState, dispatch}  = useContext(MainContext);
 
     function handleCartButtonClick(product) {
-        cartProducts.push(product)
-        setCartProducts(cartProducts)
+        dispatch({type: 'ADD_TO_CART', payload: product})
+        //axios.post()
     }
 
     return (
@@ -21,12 +21,18 @@ export default function Product({ product }) {
             <p className="mt-1 text-lg font-medium text-gray-900">
                 ${product.price}
             </p>
+            {myState.cartProducts.find((item) => item.productID === product.id) ?
+                <button className="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-800 hover:text-white border-2 border-green-900 focus:outline-none">
+                Already Added
+                </button> 
+            :
             <button className="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none"
-                onClick={() => {
-                    handleCartButtonClick(product)
-                }}>
-                Add to cart
-            </button>
+                    onClick={() => {
+                        handleCartButtonClick(product)
+                    }}>
+                    Add to cart
+                </button>
+            }
         </div>
     )
 }
