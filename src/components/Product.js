@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { MainContext } from '../contexts/MainContext';
 
 export default function Product({ product }) {
@@ -27,13 +27,13 @@ export default function Product({ product }) {
             </p>
             {myState.cartProducts.find((item) => item.productID === product.id) ?
                 <button className="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full bg-red-800 text-white border-2 border-red-900 focus:outline-none"
-                onClick={() => {
-                    handleRemoveCartButtonClick(product)
-                }}>
-                Remove From Cart
+                    onClick={() => {
+                        handleRemoveCartButtonClick(product)
+                    }}>
+                    Remove From Cart
                 </button> 
             :
-            <button className="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full bg-gray-800 text-white border-2 border-gray-900 focus:outline-none"
+                <button className="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full bg-gray-800 text-white border-2 border-gray-900 focus:outline-none"
                     onClick={() => {
                         handleCartButtonClick(product)
                     }}>
